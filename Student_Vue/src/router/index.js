@@ -57,7 +57,7 @@ const routes = [
             next("/login");
           }
         },
-        meta: { permission: true },
+        meta: { permission: true,choosecheck:true },
       },
       {
         path: 'practice',
@@ -112,15 +112,24 @@ const router = new VueRouter({
   routes
 })
 
+
 router.beforeEach((to, from, next) => {
   if (to.meta.permission) {
     if (sessionStorage.getItem("token")) {
-      next();
-    } else {
-      alert("请先登录");
-      next("/login");
+      if (to.meta.choosecheck)
+        {console.log('check')
+        if (localStorage.getItem("selected") === 'true') next();
+        else {
+          next("/choose")
+        }
     }
+      else next();
+
   } else {
+    alert("请先登录");
+    next("/login");
+  }
+}else {
     next();
   }
 });

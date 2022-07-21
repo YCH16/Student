@@ -86,7 +86,11 @@ form:[], majors:[],
         console.log(res)
         localStorage.setItem("paper",JSON.stringify(res))
         if(!res) this.$message.error("组卷失败！")
-        else {this.$message.success("组卷成功！");this.$router.push("/examstart")}
+        else {
+          this.$message.success("组卷成功！");
+          localStorage.setItem("selected",'true')
+          this.$router.push("/examstart")
+        }
       })
 
     }

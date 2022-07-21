@@ -217,6 +217,7 @@ export default {
         this.$message.success("交卷成功！")
         this.submited=true
         this.$router.push("/mygrade")
+        localStorage.setItem("selected",'false');
       })
 
     }
