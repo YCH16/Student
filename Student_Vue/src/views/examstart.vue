@@ -215,6 +215,7 @@ export default {
           })
         })
         this.$message.success("交卷成功！")
+        this.submited=true
         this.$router.push("/mygrade")
       })
 
@@ -241,6 +242,7 @@ export default {
     }, 1000);
   },
   destroyed() {
+    if(!this.submited)
     this.submit();
   },
 };
